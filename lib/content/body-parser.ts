@@ -28,17 +28,18 @@ export function parseGlossaryTerms(markdownBody: string): ParsedGlossaryTerm[] {
   const terms: ParsedGlossaryTerm[] = [];
 
   // Find the "Term Definitions (Full)" section
-  const definitionsSection = markdownBody.split('## 📝 Term Definitions (Full)')[1];
-  if (!definitionsSection) {
+  let sectionToParse = markdownBody;
+  const definitionsMatch = markdownBody.match(/## 📝 Term Definitions \(Full\)([\s\S]*?)(?=## |$)/);
+  if (definitionsMatch) {
+    sectionToParse = definitionsMatch[1];
+  } else {
     // Try alternate section headers
-    const altSection = markdownBody.split('## Term Definitions')[1] ||
-                       markdownBody.split('## Definitions')[1];
-    if (!altSection) {
-      return terms;
+    const altMatch = markdownBody.match(/## Term Definitions([\s\S]*?)(?=## |$)/) ||
+                     markdownBody.match(/## Definitions([\s\S]*?)(?=## |$)/);
+    if (altMatch) {
+      sectionToParse = altMatch[1];
     }
   }
-
-  const sectionToParse = definitionsSection || markdownBody;
 
   // Split by term headers (### ① Term, ### ② Term, etc.)
   const termBlocks = sectionToParse.split(/###\s+[①②③④⑤⑥⑦⑧⑨⑩]\s+/);
@@ -66,6 +67,8 @@ export function parseGlossaryTerms(markdownBody: string): ParsedGlossaryTerm[] {
         icon = trimmedLine.replace('**Icon:**', '').trim();
       } else if (trimmedLine.startsWith('**Examples:**') || trimmedLine.startsWith('**Example:**')) {
         example = trimmedLine.replace(/\*\*Examples?:\*\*/, '').trim();
+        // Remove quotes if present
+        example = example.replace(/^"(.+)"$/, '$1');
       }
     }
 
