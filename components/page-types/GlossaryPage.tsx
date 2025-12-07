@@ -60,7 +60,7 @@ export default function GlossaryPage({
 }
 
 interface PathProps {
-  terms: Array<{ term: string; definition: string; example?: string }>;
+  terms: Array<{ term: string; definition: string; icon?: string; example?: string }>;
   levelColors: typeof LEVEL_COLORS[keyof typeof LEVEL_COLORS];
 }
 
@@ -93,6 +93,7 @@ function WindingPath({ terms, levelColors }: PathProps) {
             <TermCard
               term={item.term}
               definition={item.definition}
+              icon={item.icon}
               example={item.example}
               index={index + 1}
               levelColors={levelColors}
@@ -112,6 +113,7 @@ function CircularPath({ terms, levelColors }: PathProps) {
           <TermCard
             term={item.term}
             definition={item.definition}
+            icon={item.icon}
             example={item.example}
             index={index + 1}
             levelColors={levelColors}
@@ -148,6 +150,7 @@ function StraightPath({ terms, levelColors }: PathProps) {
             <TermCard
               term={item.term}
               definition={item.definition}
+              icon={item.icon}
               example={item.example}
               index={index + 1}
               levelColors={levelColors}
@@ -163,6 +166,7 @@ function StraightPath({ terms, levelColors }: PathProps) {
 interface TermCardProps {
   term: string;
   definition: string;
+  icon?: string;
   example?: string;
   index: number;
   levelColors: typeof LEVEL_COLORS[keyof typeof LEVEL_COLORS];
@@ -172,6 +176,7 @@ interface TermCardProps {
 function TermCard({
   term,
   definition,
+  icon,
   example,
   index,
   levelColors,
@@ -189,7 +194,7 @@ function TermCard({
             className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
             style={{ backgroundColor: levelColors.accent }}
           >
-            {index}
+            {icon || index}
           </span>
         )}
         <h3

@@ -5,6 +5,8 @@
  * - Lesson list with progress indicators
  * - Workbook cover/header
  * - Navigation back to catalog
+ *
+ * NO MOCK DATA - content must exist or page shows error.
  */
 
 import Link from 'next/link';
@@ -42,30 +44,24 @@ export default async function WorkbookPage({ params }: WorkbookPageProps) {
 
   const levelColors = LEVEL_COLORS[workbook.gradeLevel];
 
-  // Try to load real lessons from content folder, fall back to mock
-  let lessons;
-  try {
-    const lessonIds = getLessonIds(workbook.contentPath);
-    lessons = lessonIds.map((lessonId) => {
-      const pageIds = getPageIds(workbook.contentPath, lessonId);
-      const lessonNumber = parseInt(lessonId.replace('lesson-', '').split('-')[0], 10) || 0;
-      const lessonTitle = lessonId.replace('lesson-', '').split('-').slice(1).join(' ');
+  // Load lessons from content folder - NO FALLBACKS
+  const lessonIds = getLessonIds(workbook.contentPath);
+  const lessons = lessonIds.map((lessonId) => {
+    const pageIds = getPageIds(workbook.contentPath, lessonId);
+    const lessonNumber = parseInt(lessonId.replace('lesson-', '').split('-')[0], 10) || 0;
+    const lessonTitle = lessonId.replace('lesson-', '').split('-').slice(1).join('-');
 
-      return {
-        id: lessonId,
-        number: lessonNumber,
-        title: formatLessonTitle(lessonTitle, lessonNumber),
-        pages: pageIds.map((pageId) => ({
-          id: pageId,
-          title: formatPageTitle(pageId),
-          type: getPageType(pageId),
-        })),
-      };
-    });
-  } catch {
-    // Fall back to mock lessons if content not available
-    lessons = generateMockLessons(workbook.totalLessons);
-  }
+    return {
+      id: lessonId,
+      number: lessonNumber,
+      title: formatLessonTitle(lessonTitle, lessonNumber),
+      pages: pageIds.map((pageId) => ({
+        id: pageId,
+        title: formatPageTitle(pageId),
+        type: getPageType(pageId),
+      })),
+    };
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -126,10 +122,10 @@ export default async function WorkbookPage({ params }: WorkbookPageProps) {
               {/* Stats */}
               <div className="flex gap-4 mt-4">
                 <div className="bg-white/10 px-3 py-1 rounded-lg text-white text-sm">
-                  {workbook.totalLessons} Lessons
+                  {lessons.length} Lessons
                 </div>
                 <div className="bg-white/10 px-3 py-1 rounded-lg text-white text-sm">
-                  {workbook.totalPages} Pages
+                  {lessons.reduce((acc, l) => acc + l.pages.length, 0)} Pages
                 </div>
               </div>
             </div>
@@ -208,20 +204,4 @@ function getPageType(pageId: string): 'story' | 'glossary' | 'task' | 'test' | '
   if (pageId.includes('test')) return 'test';
   if (pageId.includes('assessment') || pageId.includes('mindmap') || pageId.includes('homework')) return 'assessment';
   return 'task';
-}
-
-// Mock function - fallback when content not available
-function generateMockLessons(count: number) {
-  return Array.from({ length: count }, (_, i) => ({
-    id: `lesson-${String(i + 1).padStart(2, '0')}`,
-    number: i + 1,
-    title: `Lesson ${i + 1}`,
-    pages: [
-      { id: '01-story', title: '🏰 Kingdom Chronicle', type: 'story' as const },
-      { id: '02-glossary', title: '📚 Wisdom Path', type: 'glossary' as const },
-      { id: '03-task-remembery', title: '🦉 Owl Remembery', type: 'task' as const },
-      { id: '04-task-intellecta', title: '🦉 Owl Intellecta', type: 'task' as const },
-      { id: '05-test', title: '✅ Royal Checkpoint', type: 'test' as const },
-    ],
-  }));
 }

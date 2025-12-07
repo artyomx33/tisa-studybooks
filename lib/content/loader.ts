@@ -10,6 +10,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import type { ContentItem, ContentFrontmatter, ContentLoadOptions, ValidationResult } from '@/types/content';
 import { PAGE_TYPES } from '@/config/design-tokens';
+import { parseGlossaryTerms, parseTestQuestions, parseTaskInstructions } from './body-parser';
 
 // Content directory path (can be configured via env)
 const CONTENT_DIR = process.env.CONTENT_DIR || path.join(process.cwd(), 'content', 'workbooks');
@@ -35,12 +36,54 @@ export async function loadContentFile(filePath: string): Promise<ContentItem> {
 
   const slug = path.basename(filePath, path.extname(filePath));
 
+  // Parse body content to extract structured data based on component type
+  const enrichedData = enrichFrontmatterFromBody(data, content);
+
   return {
-    frontmatter: data as ContentFrontmatter,
+    frontmatter: enrichedData as unknown as ContentFrontmatter,
     content,
     filePath: fullPath,
     slug,
   };
+}
+
+/**
+ * Enrich frontmatter with data parsed from markdown body
+ * This handles cases where structured data is in the body text
+ * rather than YAML frontmatter.
+ */
+function enrichFrontmatterFromBody(
+  frontmatter: Record<string, unknown>,
+  bodyContent: string
+): Record<string, unknown> {
+  const enriched = { ...frontmatter };
+
+  // Parse glossary terms from body if not in frontmatter
+  if (frontmatter.component_type === 'glossary' && !frontmatter.terms) {
+    const terms = parseGlossaryTerms(bodyContent);
+    if (terms.length > 0) {
+      enriched.terms = terms;
+    }
+  }
+
+  // Parse test questions from body if not in frontmatter
+  if (frontmatter.component_type === 'test' && !frontmatter.questions) {
+    const questions = parseTestQuestions(bodyContent);
+    if (questions.length > 0) {
+      enriched.questions = questions;
+    }
+  }
+
+  // Parse task instructions from body if not in frontmatter
+  const taskTypes = ['task_remembery', 'task_intellecta', 'task_practica', 'task_deducta', 'task_critica', 'task_creatica'];
+  if (taskTypes.includes(frontmatter.component_type as string) && !frontmatter.tasks) {
+    const tasks = parseTaskInstructions(bodyContent);
+    if (tasks.length > 0) {
+      enriched.tasks = tasks;
+    }
+  }
+
+  return enriched;
 }
 
 /**

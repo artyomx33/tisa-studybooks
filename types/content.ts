@@ -53,6 +53,7 @@ export interface GlossaryFrontmatter extends BaseFrontmatter {
   terms: Array<{
     term: string;
     definition: string;
+    icon?: string;
     example?: string;
   }>;
   path_style?: 'winding' | 'straight' | 'circular';
