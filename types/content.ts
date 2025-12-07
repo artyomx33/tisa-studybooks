@@ -55,6 +55,10 @@ export interface GlossaryFrontmatter extends BaseFrontmatter {
     definition: string;
     icon?: string;
     example?: string;
+    simple?: string;
+    visual?: string;
+    warning?: string;
+    formula?: string;
   }>;
   path_style?: 'winding' | 'straight' | 'circular';
 }

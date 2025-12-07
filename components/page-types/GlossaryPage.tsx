@@ -60,7 +60,16 @@ export default function GlossaryPage({
 }
 
 interface PathProps {
-  terms: Array<{ term: string; definition: string; icon?: string; example?: string }>;
+  terms: Array<{
+    term: string;
+    definition: string;
+    icon?: string;
+    example?: string;
+    simple?: string;
+    visual?: string;
+    warning?: string;
+    formula?: string;
+  }>;
   levelColors: typeof LEVEL_COLORS[keyof typeof LEVEL_COLORS];
 }
 
@@ -95,6 +104,10 @@ function WindingPath({ terms, levelColors }: PathProps) {
               definition={item.definition}
               icon={item.icon}
               example={item.example}
+              simple={item.simple}
+              visual={item.visual}
+              warning={item.warning}
+              formula={item.formula}
               index={index + 1}
               levelColors={levelColors}
             />
@@ -115,6 +128,10 @@ function CircularPath({ terms, levelColors }: PathProps) {
             definition={item.definition}
             icon={item.icon}
             example={item.example}
+            simple={item.simple}
+            visual={item.visual}
+            warning={item.warning}
+            formula={item.formula}
             index={index + 1}
             levelColors={levelColors}
           />
@@ -152,6 +169,10 @@ function StraightPath({ terms, levelColors }: PathProps) {
               definition={item.definition}
               icon={item.icon}
               example={item.example}
+              simple={item.simple}
+              visual={item.visual}
+              warning={item.warning}
+              formula={item.formula}
               index={index + 1}
               levelColors={levelColors}
               showNumber={false}
@@ -168,6 +189,10 @@ interface TermCardProps {
   definition: string;
   icon?: string;
   example?: string;
+  simple?: string;
+  visual?: string;
+  warning?: string;
+  formula?: string;
   index: number;
   levelColors: typeof LEVEL_COLORS[keyof typeof LEVEL_COLORS];
   showNumber?: boolean;
@@ -178,10 +203,17 @@ function TermCard({
   definition,
   icon,
   example,
+  simple,
+  visual,
+  warning,
+  formula,
   index,
   levelColors,
   showNumber = true,
 }: TermCardProps) {
+  // Use simple as fallback for example if no example provided
+  const displayExample = example || simple;
+
   return (
     <div
       className="term-card bg-white rounded-lg shadow-md p-4 max-w-[280px] border-l-4"
@@ -213,8 +245,22 @@ function TermCard({
         {definition}
       </p>
 
-      {/* Example if provided */}
-      {example && (
+      {/* Formula if provided (special highlight) */}
+      {formula && (
+        <div
+          className="mt-3 p-2 rounded text-sm font-mono font-bold text-center"
+          style={{
+            backgroundColor: '#FEF3C7',
+            color: '#92400E',
+            border: '2px dashed #F59E0B',
+          }}
+        >
+          {formula}
+        </div>
+      )}
+
+      {/* Example/Simple if provided */}
+      {displayExample && (
         <div
           className="mt-3 p-2 rounded text-sm italic"
           style={{
@@ -222,8 +268,37 @@ function TermCard({
             color: levelColors.dark,
           }}
         >
-          <span className="font-semibold">Example: </span>
-          {example}
+          <span className="font-semibold">{simple && !example ? 'Simple: ' : 'Example: '}</span>
+          {displayExample}
+        </div>
+      )}
+
+      {/* Visual description if provided */}
+      {visual && (
+        <div
+          className="mt-2 p-2 rounded text-xs"
+          style={{
+            backgroundColor: '#F3F4F6',
+            color: '#4B5563',
+          }}
+        >
+          <span className="font-semibold">Visual: </span>
+          {visual}
+        </div>
+      )}
+
+      {/* Warning if provided */}
+      {warning && (
+        <div
+          className="mt-2 p-2 rounded text-sm"
+          style={{
+            backgroundColor: '#FEE2E2',
+            color: '#991B1B',
+            border: '1px solid #FECACA',
+          }}
+        >
+          <span className="font-semibold">⚠️ </span>
+          {warning}
         </div>
       )}
     </div>

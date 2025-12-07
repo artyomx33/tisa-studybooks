@@ -13,6 +13,10 @@ export interface ParsedGlossaryTerm {
   definition: string;
   icon?: string;
   example?: string;
+  simple?: string;
+  visual?: string;
+  warning?: string;
+  formula?: string;
 }
 
 /**
@@ -53,23 +57,62 @@ export function parseGlossaryTerms(markdownBody: string): ParsedGlossaryTerm[] {
     // First line is the term name
     const termName = lines[0].trim();
 
-    // Look for definition, icon, and examples
+    // Look for definition, icon, examples, and other fields
     let definition = '';
     let icon = '';
     let example = '';
+    let simple = '';
+    let visual = '';
+    let warning = '';
+    let formula = '';
 
-    for (const line of lines) {
-      const trimmedLine = line.trim();
+    // Track if we're in a multiline examples section
+    let inMultilineExamples = false;
+    const multilineExamples: string[] = [];
+
+    for (let j = 0; j < lines.length; j++) {
+      const trimmedLine = lines[j].trim();
+
+      // Check if we're starting multiline examples (line ends with : and no content after)
+      if ((trimmedLine === '**Examples:**' || trimmedLine === '**Example:**') && !trimmedLine.match(/\*\*Examples?:\*\*\s+\S/)) {
+        inMultilineExamples = true;
+        continue;
+      }
+
+      // Collect multiline bullet examples
+      if (inMultilineExamples) {
+        if (trimmedLine.startsWith('-') || trimmedLine.startsWith('•')) {
+          multilineExamples.push(trimmedLine.replace(/^[-•]\s*/, '').trim());
+          continue;
+        } else if (trimmedLine.startsWith('**') || trimmedLine === '---') {
+          // End of multiline examples
+          inMultilineExamples = false;
+        }
+      }
 
       if (trimmedLine.startsWith('**Definition:**')) {
         definition = trimmedLine.replace('**Definition:**', '').trim();
       } else if (trimmedLine.startsWith('**Icon:**')) {
         icon = trimmedLine.replace('**Icon:**', '').trim();
       } else if (trimmedLine.startsWith('**Examples:**') || trimmedLine.startsWith('**Example:**')) {
-        example = trimmedLine.replace(/\*\*Examples?:\*\*/, '').trim();
-        // Remove quotes if present
-        example = example.replace(/^"(.+)"$/, '$1');
+        const content = trimmedLine.replace(/\*\*Examples?:\*\*/, '').trim();
+        if (content) {
+          example = content.replace(/^"(.+)"$/, '$1');
+        }
+      } else if (trimmedLine.startsWith('**Simple:**')) {
+        simple = trimmedLine.replace('**Simple:**', '').trim();
+      } else if (trimmedLine.startsWith('**Visual:**')) {
+        visual = trimmedLine.replace('**Visual:**', '').trim();
+      } else if (trimmedLine.startsWith('**Warning:**')) {
+        warning = trimmedLine.replace('**Warning:**', '').trim();
+      } else if (trimmedLine.startsWith('**The Magic Formula:**')) {
+        formula = trimmedLine.replace('**The Magic Formula:**', '').trim();
       }
+    }
+
+    // If we collected multiline examples, join them
+    if (multilineExamples.length > 0 && !example) {
+      example = multilineExamples.join('; ');
     }
 
     if (termName && definition) {
@@ -78,6 +121,10 @@ export function parseGlossaryTerms(markdownBody: string): ParsedGlossaryTerm[] {
         definition,
         icon: icon || undefined,
         example: example || undefined,
+        simple: simple || undefined,
+        visual: visual || undefined,
+        warning: warning || undefined,
+        formula: formula || undefined,
       });
     }
   }
