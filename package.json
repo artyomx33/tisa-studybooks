@@ -1,0 +1,41 @@
+{
+  "name": "tisaverse-studybooks-app",
+  "version": "1.0.0",
+  "description": "TISAverse Studybooks - Visual Rendering Engine",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-primitive": "^2.1.4",
+    "@react-pdf/renderer": "^4.3.1",
+    "@supabase/supabase-js": "^2.86.1",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@tanstack/react-query": "^5.90.12",
+    "@vercel/analytics": "^1.6.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.13.0",
+    "eslint-config-next": "^16.0.7",
+    "gray-matter": "^4.0.3",
+    "motion": "^4.0.2",
+    "next": "^16.0.7",
+    "next-mdx-remote": "^5.0.0",
+    "postcss": "^8.4.41",
+    "puppeteer": "^24.29.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-sketch-canvas": "^6.2.0",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3",
+    "zustand": "^5.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1"
+  }
+}

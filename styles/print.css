@@ -1,0 +1,250 @@
+/**
+ * Print Styles for TISAverse Studybooks
+ *
+ * Optimized for A4 paper (210mm x 297mm)
+ * Perfect page breaks and margins for workbook printing.
+ */
+
+@media print {
+  /* Page setup */
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  /* Reset body */
+  body {
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Hide non-print elements */
+  nav,
+  footer,
+  .no-print,
+  .lesson-navigator,
+  button:not(.print-button) {
+    display: none !important;
+  }
+
+  /* Show print-only elements */
+  .print-block {
+    display: block !important;
+  }
+
+  /* Base page container */
+  .base-page {
+    width: 190mm !important;
+    height: 277mm !important;
+    min-height: 277mm !important;
+    max-height: 277mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  /* Purple bar always visible */
+  .purple-bar {
+    background-color: #6B3FA0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page header */
+  .page-header {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure backgrounds print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Story page letter scroll */
+  .letter-scroll {
+    background-color: #FEF7E7 !important;
+    border: 2px solid #D4AF37 !important;
+  }
+
+  /* Glossary path */
+  .glossary-path {
+    page-break-inside: avoid !important;
+  }
+
+  /* Term cards */
+  .term-card {
+    page-break-inside: avoid !important;
+    background-color: white !important;
+    border: 1px solid #E5E7EB !important;
+  }
+
+  /* Task cards */
+  .task-card {
+    page-break-inside: avoid !important;
+  }
+
+  /* Question cards */
+  .question-card {
+    page-break-inside: avoid !important;
+    margin-bottom: 8mm !important;
+  }
+
+  /* Input fields for writing */
+  input[type="text"],
+  textarea {
+    border: 1px solid #9CA3AF !important;
+    background-color: white !important;
+    min-height: 10mm !important;
+  }
+
+  /* Radio/Checkbox styling */
+  input[type="radio"],
+  input[type="checkbox"] {
+    width: 4mm !important;
+    height: 4mm !important;
+    border: 1px solid #374151 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  /* Drawing canvas placeholder */
+  .drawing-canvas {
+    border: 2px dashed #9CA3AF !important;
+    background-color: white !important;
+    min-height: 60mm !important;
+  }
+
+  /* Sticker drop zones */
+  .sticker-drop-zone {
+    border: 2px dashed #9CA3AF !important;
+    background-color: #F9FAFB !important;
+    min-height: 30mm !important;
+    min-width: 30mm !important;
+  }
+
+  /* Mind map */
+  .mind-map-page {
+    page-break-inside: avoid !important;
+  }
+
+  /* Assessment scales */
+  .assessment-scale {
+    page-break-inside: avoid !important;
+  }
+
+  /* Owl badges - ensure colors print */
+  .owl-badge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Links - remove underline, show plain text */
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* SVG graphics */
+  svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Tables */
+  table {
+    page-break-inside: avoid !important;
+  }
+
+  /* Rounded corners may not print well - simplify */
+  .rounded-xl,
+  .rounded-lg,
+  .rounded-md {
+    border-radius: 2mm !important;
+  }
+
+  /* Shadows don't print - remove */
+  .shadow,
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: none !important;
+  }
+
+  /* Font sizes - ensure readability */
+  body {
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  h1 { font-size: 18pt !important; }
+  h2 { font-size: 16pt !important; }
+  h3 { font-size: 14pt !important; }
+  h4 { font-size: 12pt !important; }
+
+  /* Avoid orphans/widows */
+  p, h1, h2, h3, h4, h5, h6 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Headings should not be at bottom of page */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+  }
+
+  /* Answer key styling for teacher mode */
+  .answer-key {
+    background-color: #ECFDF5 !important;
+    border-left: 3px solid #10B981 !important;
+    padding: 2mm !important;
+  }
+
+  /* Teacher mode badge */
+  .teacher-mode-badge {
+    background-color: #FEF3C7 !important;
+    color: #92400E !important;
+  }
+
+  /* Progress indicators - hide for print */
+  .progress-bar,
+  .progress-indicator {
+    display: none !important;
+  }
+
+  /* Page numbers - add via CSS counter if needed */
+  .base-page::after {
+    content: counter(page);
+    position: absolute;
+    bottom: 5mm;
+    right: 10mm;
+    font-size: 9pt;
+    color: #9CA3AF;
+  }
+}
+
+/* Print preview mode - show page boundaries */
+@media screen {
+  .print-preview .base-page {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+}
