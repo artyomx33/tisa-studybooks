@@ -4,7 +4,7 @@
  * Functions for tracking student progress through workbooks.
  * Handles page completion, time tracking, and progress queries.
  *
- * Table: progress-books (suffixed to avoid conflicts with other apps)
+ * Table: studybooks_progress (prefixed for organization)
  */
 
 import { supabase, isSupabaseConfigured } from './client';
@@ -27,7 +27,7 @@ interface ProgressRow {
   updated_at: string;
 }
 
-const TABLE_NAME = 'progress-books';
+const TABLE_NAME = 'studybooks_progress';
 
 /**
  * Get progress for a specific page

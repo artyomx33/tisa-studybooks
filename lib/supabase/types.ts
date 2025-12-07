@@ -36,8 +36,8 @@ export interface Database {
         Update: never; // We don't update users from Studybooks
       };
 
-      // NEW: Workbook progress tracking (suffixed with -books to avoid conflicts)
-      'progress-books': {
+      // Workbook progress tracking (prefixed with studybooks_ for organization)
+      studybooks_progress: {
         Row: {
           id: string;
           user_id: string;
@@ -85,8 +85,8 @@ export interface Database {
         };
       };
 
-      // NEW: Learning preferences (suffixed with -books)
-      'preferences-books': {
+      // Learning preferences (prefixed with studybooks_)
+      studybooks_preferences: {
         Row: {
           id: string;
           user_id: string;
@@ -119,8 +119,8 @@ export interface Database {
         };
       };
 
-      // NEW: Workbook drawings (canvas saves, suffixed with -books)
-      'drawings-books': {
+      // Workbook drawings (canvas saves, prefixed with studybooks_)
+      studybooks_drawings: {
         Row: {
           id: string;
           user_id: string;
@@ -156,8 +156,8 @@ export interface Database {
         };
       };
 
-      // NEW: Sticker placements (suffixed with -books)
-      'stickers-books': {
+      // Sticker placements (prefixed with studybooks_)
+      studybooks_stickers: {
         Row: {
           id: string;
           user_id: string;
@@ -202,14 +202,14 @@ export interface Database {
   };
 }
 
-// Convenience type aliases (using -books suffixed table names)
-export type WorkbookProgress = Database['public']['Tables']['progress-books']['Row'];
-export type WorkbookProgressInsert = Database['public']['Tables']['progress-books']['Insert'];
-export type WorkbookProgressUpdate = Database['public']['Tables']['progress-books']['Update'];
+// Convenience type aliases (using studybooks_ prefixed table names)
+export type WorkbookProgress = Database['public']['Tables']['studybooks_progress']['Row'];
+export type WorkbookProgressInsert = Database['public']['Tables']['studybooks_progress']['Insert'];
+export type WorkbookProgressUpdate = Database['public']['Tables']['studybooks_progress']['Update'];
 
-export type LearningPreferences = Database['public']['Tables']['preferences-books']['Row'];
-export type WorkbookDrawing = Database['public']['Tables']['drawings-books']['Row'];
-export type WorkbookSticker = Database['public']['Tables']['stickers-books']['Row'];
+export type LearningPreferences = Database['public']['Tables']['studybooks_preferences']['Row'];
+export type WorkbookDrawing = Database['public']['Tables']['studybooks_drawings']['Row'];
+export type WorkbookSticker = Database['public']['Tables']['studybooks_stickers']['Row'];
 
 export type User = Database['public']['Tables']['users']['Row'];
 
