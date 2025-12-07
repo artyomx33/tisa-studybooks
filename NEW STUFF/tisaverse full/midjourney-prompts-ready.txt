@@ -1,0 +1,145 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# TISAVERSE COVER PROMPTS — COPY-PASTE READY FOR MIDJOURNEY
+# ═══════════════════════════════════════════════════════════════════════════════
+# Just copy each prompt block and paste directly into Midjourney!
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 1: MY FIRST PROJECT
+# Grade 2 | Age 5-6 | Dark Blue Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A diverse young child standing excitedly at the start of a magical colorful pathway leading to a glowing castle made of lightbulbs and gears in the distance, the child holds a small notebook and pencil, floating friendly icons of stars and tools and question marks around them, stepping stones with simple project symbols, soft blue gradient sky background, children's book illustration style, warm and inviting, Pixar-inspired soft lighting, magical atmosphere, professional quality, appealing to ages 5-11 --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 2: ECONOMICS THROUGH FAIRY TALES ⭐ PRIORITY
+# Grade 3 | Age 6-7 | Dark Green Theme | Kingdom of Finance
+# ─────────────────────────────────────────────────────────────────────────────
+
+A magical fairy tale kingdom called Kingdom of Finance on lush green rolling hills, magnificent castle with a kind middle-aged king wearing golden crown on the balcony next to a wise owl with tiny round glasses, a friendly rabbit and clever squirrel looking up excitedly in the foreground, golden coins floating magically in the air with sparkles, sparkling river winding through scene, village market stalls below, enchanted storybook illustration style, warm golden hour lighting, Studio Ghibli inspired, lush greens and golds, magical sparkles, professional children's book quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 3: FINANCIAL LITERACY
+# Grade 3 | Age 6-7 | Dark Green Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A magical treehouse bank in an enchanted forest, wise owl banker wearing tiny glasses at wooden counter, diverse children and friendly animal characters learning about money together, activities like counting golden coins and using a piggy bank shaped like a mini treehouse, treasure map showing savings goals on the wall, warm forest lighting filtering through leaves, golden coins and gems as decoration, whimsical storybook illustration, warm and educational atmosphere, rich greens and golds, cozy and inviting, professional children's book quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 4: CREATIVE PROBLEM-SOLVING
+# Grade 4 | Age 7-8 | Light Green Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A magical inventor's workshop where giant lightbulbs grow like glowing plants from the floor, diverse children working together building creative solutions with colorful blocks and tools, floating gears and cogs assembling magically in the air, wise inventor owl wearing goggles guiding them, chalkboards with creative diagrams in background, room transforms from puzzle pieces on left side to beautiful solutions on right side, whimsical invention illustration style, bright and inspiring, light greens and creative rainbow accents, sense of wonder and discovery, professional children's book quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 5: SMART-CITY MANAGEMENT
+# Grade 4 | Age 7-8 | Light Green Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A beautiful futuristic eco-friendly smart city where nature meets technology harmoniously, buildings with lush green rooftop gardens, solar panels and wind turbines powering everything, friendly self-driving vehicles and cute delivery drones, diverse children as city planners standing around a glowing holographic city planning table, digital trees with small screens, smart glowing traffic elements, happy citizens walking below, clean bright optimistic atmosphere, futuristic children's illustration style, eco-tech aesthetic, light greens and soft blues, utopian and inspiring, professional quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 6: MY COMPANY
+# Grade 5 | Age 8-9 | Burgundy Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A proud young diverse entrepreneur child standing confidently in front of their own magical shop that's part charming treehouse part professional business, glowing warm shop sign above, window showing products being made inside by friendly helpers, cute animal assistants helping run the shop, excited customers lining up including kids and friendly animals, child holds business plan scroll and wears tiny CEO badge, warm burgundy and gold tones, charming business illustration style, entrepreneurial spirit, professional yet playful, aspirational and encouraging --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 7: CUSTOMER DEVELOPMENT
+# Grade 5 | Age 8-9 | Burgundy Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A young diverse entrepreneur child with clipboard conducting friendly interviews with various customers including people and friendly animals in a cozy market research café, colorful speech bubbles floating with heart star and lightbulb icons showing customer feedback, customer journey map board visible in background with simple icons, products shown transforming from simple version to improved version based on feedback, warm engaging atmosphere, business illustration style with warmth, burgundy and cream tones, conversational and friendly mood, professional children's book quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 8: INTERNET OF THINGS
+# Grade 6 | Age 9-10 | Rose Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A magical smart home of the future where a diverse child stands like a conductor in the center with glowing connection lines flowing from their hands to various smart devices around the room, friendly small robot assistant, smart fridge showing recipes on screen, plants with cute sensors signaling when thirsty, automatic pet feeder activating, all devices have cute friendly cartoon faces and personality, beautiful digital data streams flowing between objects as light trails, rose pink and teal digital accents, tech-forward children's illustration style, connected world aesthetic, futuristic but warm and friendly, professional quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 9: MY FIRST APP
+# Grade 6 | Age 9-10 | Rose Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+A young diverse child app developer at a futuristic friendly glowing workspace, dragging colorful floating code blocks through the air to build an app, the app interface comes alive with cute characters and features popping out of the screen in magical 3D, adorable code mascots helping including a friendly debug bug and pixel heart and function cat, multiple device screens around showing the app working, celebratory confetti particles as features complete, rose pink and electric purple gradient background, digital creative illustration style, app development made magical, inspiring and achievable feeling, professional quality --ar 3:4 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COVER 10: FUNDAMENTALS OF ENTREPRENEURSHIP
+# Grade 7 | Age 10-11 | Orange Theme
+# ─────────────────────────────────────────────────────────────────────────────
+
+Young diverse entrepreneurs standing heroically on a glowing launchpad platform launching their unique ideas as colorful glowing rockets blasting off into a sky full of golden possibilities, sky shows faint inspiring visions of what ideas could become including businesses inventions and helpful services, other young entrepreneurs cheering them on from below, wise owl mentor wearing business attire guiding proudly from the side, confident ambitious world-changing energy, dynamic upward composition, vibrant orange and golden sunrise tones, inspirational startup illustration style, ambitious yet achievable, professional quality, powerful and aspirational --ar 3:4 --v 6 --style raw --q 2
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BONUS: CHARACTER CONSISTENCY PROMPTS
+# Use these to generate consistent characters for inside illustrations
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# KING LUMINAR — Character Reference Sheet
+# ─────────────────────────────────────────────────────────────────────────────
+
+Character reference sheet for King Luminar, a kind wise middle-aged king, warm friendly expression with gentle smile, golden ornate crown with small colorful gems, royal purple velvet robe with gold trim and embroidered patterns, salt and pepper beard neatly trimmed, warm brown eyes full of wisdom, standing pose and portrait view, full body turnaround, children's book illustration style, warm and approachable royal character, professional character design, white background --ar 1:1 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OWL CREATICA — Character Reference Sheet
+# ─────────────────────────────────────────────────────────────────────────────
+
+Character reference sheet for Owl Creatica, a wise friendly owl character, warm brown feathers with subtle purple and blue iridescent hints, large kind expressive eyes, tiny round spectacles glasses, thoughtful curious expression, holding a small paintbrush, wings that can gesture like hands, multiple poses showing personality, children's book illustration style, warm and wise mentor character, professional character design, white background --ar 1:1 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# RABBIT MOSS — Character Reference Sheet
+# ─────────────────────────────────────────────────────────────────────────────
+
+Character reference sheet for Rabbit Moss, an energetic friendly brown rabbit character, soft warm brown fur, big curious eyes, long expressive ears that show emotion, wearing a small green vest with leaf pattern, always looks excited and ready for adventure, bouncy energetic poses, children's book illustration style, enthusiastic young learner character, professional character design, white background --ar 1:1 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SQUIRREL TWIG — Character Reference Sheet
+# ─────────────────────────────────────────────────────────────────────────────
+
+Character reference sheet for Squirrel Twig, a clever quick-thinking reddish-brown squirrel character, fluffy tail that expresses emotion, bright intelligent eyes, wearing tiny round glasses and a small acorn-shaped pendant, always has a thoughtful or mischievous expression, holding acorn or small notebook, multiple clever poses, children's book illustration style, smart sidekick character, professional character design, white background --ar 1:1 --v 6 --style raw --q 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE SIX WISE OWLS — Group Reference Sheet
+# ─────────────────────────────────────────────────────────────────────────────
+
+Character lineup of six wise owl teachers, each with distinct personality and color, from left to right: soft blue owl with notebook called Remembery, deep purple owl with magnifying glass called Intellecta, earthy green owl with tool belt called Practica, steel gray owl with detective hat called Deducta, warm orange owl with balance scale called Critica, rainbow gradient owl with paintbrush called Creatica, all owls friendly and approachable with unique accessories matching their specialty, children's book illustration style, teacher mentor characters, professional character design, white background --ar 16:9 --v 6 --style raw --q 2
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TIPS FOR BEST RESULTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# 1. Run each prompt 4 times to get variations (Midjourney generates 4 by default)
+# 2. Use "U1", "U2", "U3", or "U4" to upscale your favorite
+# 3. Use "V1", "V2", etc. to create variations of favorites
+# 4. Add "--seed [number]" to recreate similar styles across covers
+# 5. Adjust "--stylize" value (0-1000) for more/less Midjourney interpretation
+#    - Lower (250): More literal to prompt
+#    - Higher (750): More artistic freedom
+
+# RECOMMENDED WORKFLOW:
+# 1. Generate Cover 2 (Economics) first as your "hero" reference
+# 2. Note the seed number if you love it (use /info after generation)
+# 3. Apply similar seed to other covers for style consistency
+# 4. Generate character sheets to maintain consistency in lesson illustrations

@@ -10,6 +10,7 @@ import { getWorkbookById } from '@/config/workbooks';
 import PageRenderer from '@/lib/rendering/page-renderer';
 import LessonNavigator from '@/components/workbook/LessonNavigator';
 import PageProgressTracker from '@/components/workbook/PageProgressTracker';
+import { loadPageContent, getPageIds } from '@/lib/content/loader';
 import type { ContentItem } from '@/types/content';
 import type { PageType } from '@/config/design-tokens';
 
@@ -47,13 +48,34 @@ export default async function PageRoute({ params, searchParams }: PageRouteProps
 
   const isTeacherMode = mode === 'teacher';
 
-  // Mock content - in production, this would load from markdown files
-  const mockContent = generateMockContent(workbookId, lessonId, pageId);
+  // Try to load real content, fall back to mock if not available
+  let content: ContentItem;
+  let navigation: ReturnType<typeof generateMockNavigation>;
 
-  // Mock navigation data
-  const navigation = generateMockNavigation(lessonId, pageId);
+  try {
+    // Load real content from markdown files
+    content = await loadPageContent({
+      workbookId: workbook.contentPath,
+      lessonId,
+      pageId,
+    });
 
-  const componentType = getComponentTypeFromPageId(pageId);
+    // Get real navigation from content folder
+    const pages = getPageIds(workbook.contentPath, lessonId);
+    const currentIndex = pages.findIndex(p => p.startsWith(pageId.split('-')[0]));
+    navigation = {
+      prev: currentIndex > 0 ? { lessonId, pageId: pages[currentIndex - 1] } : null,
+      next: currentIndex < pages.length - 1 ? { lessonId, pageId: pages[currentIndex + 1] } : null,
+      total: pages.length,
+      current: currentIndex + 1,
+    };
+  } catch {
+    // Fall back to mock content if real content not found
+    content = generateMockContent(workbookId, lessonId, pageId);
+    navigation = generateMockNavigation(lessonId, pageId);
+  }
+
+  const componentType = (content.frontmatter.component_type || getComponentTypeFromPageId(pageId)) as PageType;
 
   return (
     <PageProgressTracker
@@ -67,7 +89,7 @@ export default async function PageRoute({ params, searchParams }: PageRouteProps
         <main className="flex-1 flex items-center justify-center p-4 print:p-0">
           <div className="w-full max-w-[210mm] print:max-w-none">
             <PageRenderer
-              content={mockContent}
+              content={content}
               gradeLevel={workbook.gradeLevel}
               isTeacherMode={isTeacherMode}
             />

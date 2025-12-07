@@ -12,7 +12,7 @@ import type { ContentItem, ContentFrontmatter, ContentLoadOptions, ValidationRes
 import { PAGE_TYPES } from '@/config/design-tokens';
 
 // Content directory path (can be configured via env)
-const CONTENT_DIR = process.env.CONTENT_DIR || path.join(process.cwd(), 'content');
+const CONTENT_DIR = process.env.CONTENT_DIR || path.join(process.cwd(), 'content', 'workbooks');
 
 /**
  * Load a single content file by path

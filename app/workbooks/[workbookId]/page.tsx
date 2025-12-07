@@ -12,6 +12,7 @@ import { notFound } from 'next/navigation';
 import { getWorkbookById } from '@/config/workbooks';
 import { LEVEL_COLORS, FONTS, TISA_COLORS } from '@/config/design-tokens';
 import TableOfContentsClient from '@/components/workbook/TableOfContentsClient';
+import { getLessonIds, getPageIds } from '@/lib/content/loader';
 
 interface WorkbookPageProps {
   params: Promise<{ workbookId: string }>;
@@ -41,8 +42,30 @@ export default async function WorkbookPage({ params }: WorkbookPageProps) {
 
   const levelColors = LEVEL_COLORS[workbook.gradeLevel];
 
-  // Mock lessons data - in production, this would come from content loader
-  const lessons = generateMockLessons(workbook.totalLessons);
+  // Try to load real lessons from content folder, fall back to mock
+  let lessons;
+  try {
+    const lessonIds = getLessonIds(workbook.contentPath);
+    lessons = lessonIds.map((lessonId) => {
+      const pageIds = getPageIds(workbook.contentPath, lessonId);
+      const lessonNumber = parseInt(lessonId.replace('lesson-', '').split('-')[0], 10) || 0;
+      const lessonTitle = lessonId.replace('lesson-', '').split('-').slice(1).join(' ');
+
+      return {
+        id: lessonId,
+        number: lessonNumber,
+        title: formatLessonTitle(lessonTitle, lessonNumber),
+        pages: pageIds.map((pageId) => ({
+          id: pageId,
+          title: formatPageTitle(pageId),
+          type: getPageType(pageId),
+        })),
+      };
+    });
+  } catch {
+    // Fall back to mock lessons if content not available
+    lessons = generateMockLessons(workbook.totalLessons);
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -138,19 +161,67 @@ function getWorkbookEmoji(grade: number): string {
   return emojis[grade] || '📚';
 }
 
-// Mock function - in production, this would load from content files
-// Progress is handled by TableOfContentsClient via Supabase
+// Format lesson title from folder name
+function formatLessonTitle(folderName: string, lessonNumber: number): string {
+  const titleMap: Record<string, string> = {
+    'money': 'Money',
+    'production': 'Production',
+    'consumption': 'Consumption',
+    'trade-market': 'Trade & Market',
+    'wealth': 'Wealth',
+    'division-of-labour': 'Division of Labour',
+    'insurance': 'Insurance',
+    'entrepreneurship': 'Entrepreneurship',
+    'finance': 'Finance',
+  };
+
+  return titleMap[folderName] || `Lesson ${lessonNumber}: ${folderName.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}`;
+}
+
+// Format page title from file name
+function formatPageTitle(pageId: string): string {
+  const titleMap: Record<string, string> = {
+    'story': '🏰 Kingdom Chronicle',
+    'glossary': '📚 Wisdom Path',
+    'task-remembery': '🦉 Owl Remembery',
+    'task-intellecta': '🦉 Owl Intellecta',
+    'task-practica': '🦉 Owl Practica',
+    'task-deducta': '🦉 Owl Deducta',
+    'task-critica': '🦉 Owl Critica',
+    'task-creatica': '🎨 Owl Creatica',
+    'test': '✅ Royal Checkpoint',
+    'mindmap': '🧠 Mind Map',
+    'homework': '📝 Home Mission',
+    'assessment': '📊 Self Assessment',
+  };
+
+  // Extract page type from filename (e.g., "01-story" -> "story")
+  const pageType = pageId.replace(/^\d+-/, '');
+  return titleMap[pageType] || pageType.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+// Get page type from filename
+function getPageType(pageId: string): 'story' | 'glossary' | 'task' | 'test' | 'assessment' {
+  if (pageId.includes('story')) return 'story';
+  if (pageId.includes('glossary')) return 'glossary';
+  if (pageId.includes('task')) return 'task';
+  if (pageId.includes('test')) return 'test';
+  if (pageId.includes('assessment') || pageId.includes('mindmap') || pageId.includes('homework')) return 'assessment';
+  return 'task';
+}
+
+// Mock function - fallback when content not available
 function generateMockLessons(count: number) {
   return Array.from({ length: count }, (_, i) => ({
     id: `lesson-${String(i + 1).padStart(2, '0')}`,
     number: i + 1,
     title: `Lesson ${i + 1}`,
     pages: [
-      { id: '01-story', title: 'Kingdom Chronicle', type: 'story' as const },
-      { id: '02-glossary', title: 'Wisdom Path', type: 'glossary' as const },
-      { id: '03-task-remembery', title: 'Owl Remembery', type: 'task' as const },
-      { id: '04-task-intellecta', title: 'Owl Intellecta', type: 'task' as const },
-      { id: '05-test', title: 'Royal Checkpoint', type: 'test' as const },
+      { id: '01-story', title: '🏰 Kingdom Chronicle', type: 'story' as const },
+      { id: '02-glossary', title: '📚 Wisdom Path', type: 'glossary' as const },
+      { id: '03-task-remembery', title: '🦉 Owl Remembery', type: 'task' as const },
+      { id: '04-task-intellecta', title: '🦉 Owl Intellecta', type: 'task' as const },
+      { id: '05-test', title: '✅ Royal Checkpoint', type: 'test' as const },
     ],
   }));
 }
