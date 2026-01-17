@@ -22,7 +22,7 @@
     "eslint-config-next": "^16.0.7",
     "gray-matter": "^4.0.3",
     "motion": "^4.0.2",
-    "next": "^16.0.7",
+    "next": "16.0.10",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.41",
     "puppeteer": "^24.29.1",
